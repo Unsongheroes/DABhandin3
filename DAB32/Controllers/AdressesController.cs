@@ -29,6 +29,7 @@ namespace DAB32.Controllers
                     AdresseId = a.AdresseId,
                     Husnummer = a.Husnummer,
                     VejNavn = a.VejNavn,
+                    ByPostNummer = a.ByPostNummer,
                     PersonAdresses = a.PersonAdresses.Select(pa => new PersonAdressesDTO()
                     {
                         AdresseId = pa.AdresseId,

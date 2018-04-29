@@ -7,13 +7,13 @@ namespace DAB32.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class dabgit : IMigrationMetadata
+    public sealed partial class remove_postnummerid : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dabgit));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(remove_postnummerid));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804291155193_dabgit"; }
+            get { return "201804291334254_remove_postnummerid"; }
         }
         
         string IMigrationMetadata.Source

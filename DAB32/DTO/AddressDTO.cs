@@ -35,7 +35,6 @@ namespace DAB32.DTO
             return new Adresse()
             {
                 AdresseId = AdresseId,
-                ByPostNummer = ByPostNummer,
                 Husnummer = Husnummer,
                 PersonAdresses = PersonAdresses.Select(pa => pa.ToPersonAdresses()).ToList(),
                 VejNavn = VejNavn,
@@ -49,7 +48,7 @@ namespace DAB32.DTO
         public int Husnummer { get; set; }
 
         public List<PersonAdressesDTO> PersonAdresses { get; set; }
-
+        
         public ByPostNummer ByPostNummer { get; set; }
     }
 }

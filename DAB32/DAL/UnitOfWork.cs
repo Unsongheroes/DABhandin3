@@ -28,15 +28,7 @@ namespace DAB32.DAL
 
         public IPersonRepository PersonRepository
         {
-            get
-            {
-                if (_personRepository == null)
-                {
-                    _personRepository = new PersonRepository(_context);
-                }
-
-                return _personRepository;
-            }
+            get { return _personRepository ?? (_personRepository = new PersonRepository(_context)); }
         }
 
         public int Complete()

@@ -221,9 +221,13 @@
     <Compile Include="Migrations\201804290943550_Reference.Designer.cs">
       <DependentUpon>201804290943550_Reference.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804291155193_dabgit.cs" />
-    <Compile Include="Migrations\201804291155193_dabgit.Designer.cs">
-      <DependentUpon>201804291155193_dabgit.cs</DependentUpon>
+    <Compile Include="Migrations\201804291318529_postnummer.cs" />
+    <Compile Include="Migrations\201804291318529_postnummer.Designer.cs">
+      <DependentUpon>201804291318529_postnummer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804291334254_remove_postnummerid.cs" />
+    <Compile Include="Migrations\201804291334254_remove_postnummerid.Designer.cs">
+      <DependentUpon>201804291334254_remove_postnummerid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -313,8 +317,11 @@
     <EmbeddedResource Include="Migrations\201804290943550_Reference.resx">
       <DependentUpon>201804290943550_Reference.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804291155193_dabgit.resx">
-      <DependentUpon>201804291155193_dabgit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804291318529_postnummer.resx">
+      <DependentUpon>201804291318529_postnummer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804291334254_remove_postnummerid.resx">
+      <DependentUpon>201804291334254_remove_postnummerid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
