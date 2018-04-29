@@ -63,19 +63,6 @@ namespace DAB32.Migrations
                     PersonType = "CEO",
                     MellemNavn = "georh",
                     Email = "Per@Gmail.com",
-                    PAMatchId = new List<int>()
-                    {
-                        1,
-                        12
-                    },
-                    TelefonId = new List<int>()
-                    {
-                        1,
-                        12345678
-                    }
-                    
-
-                    
                     
 
                 },
