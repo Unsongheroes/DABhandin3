@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DAB32.Models;
+using DAB33.Models;
 using Newtonsoft.Json;
 
 namespace DAB33.Models
@@ -14,7 +14,7 @@ namespace DAB33.Models
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }
         [JsonProperty(PropertyName = "adresse")]
-        public Adresse Adresse { get; set; }
+        public Addresse Adresse { get; set; }
         [JsonIgnore]
         public Person Person { get; set; }
     }
