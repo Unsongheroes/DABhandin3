@@ -23,9 +23,8 @@ namespace DAB32.Controllers
         //Do instantiate a new DbContext instance for each request.
         public IEnumerable<PersonDTO> GetPeople()
         {
-            DAB32Context db = new DAB32Context();
-            IUnitOfWork uow = new UnitOfWork(db);
-            var persons = from p in uow.Persons.GetAllPersons()
+            IUnitOfWork uow = new UnitOfWork();
+            var persons = from p in uow.PersonRepository.GetAllPersons()
                           select new PersonDTO()
             {
                 PersonId = p.Cpr,
@@ -56,10 +55,9 @@ namespace DAB32.Controllers
         [ResponseType(typeof(PersonDTO))]
         public IHttpActionResult GetPerson(int id)
         {
-            DAB32Context db = new DAB32Context();
-            IUnitOfWork uow = new UnitOfWork(db);
+            IUnitOfWork uow = new UnitOfWork();
 
-            var person = uow.Persons.GetPerson(id);
+            var person = uow.PersonRepository.GetPerson(id);
             PersonDTO personDto = new PersonDTO()
             {
                 PersonId = person.Cpr,
@@ -96,8 +94,7 @@ namespace DAB32.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPerson(int id, Person person)
         {
-            DAB32Context db = new DAB32Context();
-            IUnitOfWork uow = new UnitOfWork(db);
+            IUnitOfWork uow = new UnitOfWork();
 
             if (!ModelState.IsValid)
             {
@@ -109,7 +106,7 @@ namespace DAB32.Controllers
                 return BadRequest();
             }
 
-            var dbPerson = uow.Persons.Update(id, person);
+            var dbPerson = uow.PersonRepository.Update(id, person);
             
 
             try
@@ -135,15 +132,14 @@ namespace DAB32.Controllers
         [ResponseType(typeof(PersonDTO))]
         public IHttpActionResult PostPerson(PersonDTO person)
         {
-            DAB32Context db = new DAB32Context();
-            IUnitOfWork uow = new UnitOfWork(db);
+            IUnitOfWork uow = new UnitOfWork();
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            uow.Persons.Add(person.ToPerson());
+            uow.PersonRepository.Add(person.ToPerson());
             uow.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = person.PersonId }, person);
@@ -153,17 +149,16 @@ namespace DAB32.Controllers
         [ResponseType(typeof(PersonDTO))]
         public IHttpActionResult DeletePerson(int id)
         {
-            DAB32Context db = new DAB32Context();
-            IUnitOfWork uow = new UnitOfWork(db);
+            IUnitOfWork uow = new UnitOfWork();
 
-            Person person = uow.Persons.Get(id);
+            Person person = uow.PersonRepository.Get(id);
             if (person == null)
             {
                 return NotFound();
             }
 
 
-            uow.Persons.Remove(person);
+            uow.PersonRepository.Remove(person);
             uow.Complete();
 
             return Ok(person);

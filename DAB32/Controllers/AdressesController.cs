@@ -21,10 +21,9 @@ namespace DAB32.Controllers
         // GET: api/Adresses
         public IEnumerable<AddressDTO> GetAdresses()
         {
-            DAB32Context db = new DAB32Context();
-            IUnitOfWork _uow = new UnitOfWork(db);
+            IUnitOfWork _uow = new UnitOfWork();
 
-            var address = from a in _uow.Persons.GetAllAdresses()
+            var address = from a in _uow.PersonRepository.GetAllAdresses()
                 select new AddressDTO()
                 {
                     AdresseId = a.AdresseId,

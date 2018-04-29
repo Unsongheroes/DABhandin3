@@ -4,7 +4,7 @@ namespace DAB32
 {
     public interface IUnitOfWork : IDisposable
     {
-        IPersonRepository Persons { get; }
+        IPersonRepository PersonRepository { get; }
         int Complete();
 
 

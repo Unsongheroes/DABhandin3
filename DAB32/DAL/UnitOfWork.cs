@@ -10,18 +10,14 @@ namespace DAB32.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DAB32Context _context;
-
-        public UnitOfWork(DAB32Context context)
-        {
-            _context = context;
-            Persons = new PersonRepository(_context);
-        }
-
+        private readonly DAB32Context _context = new DAB32Context();
+        private IPersonRepository _personRepository;
+        
+        
         public void Dispose()
         {
-            var itemsToDelete = Persons.GetAllPersons();
-            Persons.RemoveRange(itemsToDelete);
+            var itemsToDelete = PersonRepository.GetAllPersons();
+            PersonRepository.RemoveRange(itemsToDelete);
 
             var itemsToDelete2 = _context.ByPostNummers;
             _context.ByPostNummers.RemoveRange(itemsToDelete2);
@@ -30,7 +26,18 @@ namespace DAB32.DAL
             _context.Adresses.RemoveRange(itemsToDelete3);
         }
 
-        public IPersonRepository Persons { get; }
+        public IPersonRepository PersonRepository
+        {
+            get
+            {
+                if (_personRepository == null)
+                {
+                    _personRepository = new PersonRepository(_context);
+                }
+
+                return _personRepository;
+            }
+        }
 
         public int Complete()
         {
