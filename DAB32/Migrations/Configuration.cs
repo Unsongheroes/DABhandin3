@@ -43,14 +43,16 @@ namespace DAB32.Migrations
                {
                    Husnummer = 1,
                    AdresseId = 2,
-                   VejNavn = "kildemosevej",
+                   VejNavn = "kildemosevej"
+                 
 
                },
                new Adresse
                {
                    AdresseId = 1,
                    Husnummer = 2,
-                   VejNavn = "Strandvejen",
+                   VejNavn = "Strandvejen"
+                 
                }
                );
 
