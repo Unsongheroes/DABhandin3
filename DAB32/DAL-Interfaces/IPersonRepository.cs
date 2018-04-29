@@ -7,6 +7,7 @@ namespace DAB32
     {
         IEnumerable<Person> GetPersonsByLastName(int amountofPersons);
         IEnumerable<Person> GetAllPersons();
+        Person GetPerson(int id);
         IEnumerable<Adresse> GetAllAdresses();
         IEnumerable<TelefonNummer> GetAllTelefonNummers();
     }

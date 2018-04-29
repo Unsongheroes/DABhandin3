@@ -59,7 +59,7 @@ namespace DAB32.Controllers
             DAB32Context db = new DAB32Context();
             IUnitOfWork uow = new UnitOfWork(db);
 
-            var person = uow.Persons.Get(id);
+            var person = uow.Persons.GetPerson(id);
             PersonDTO personDto = new PersonDTO()
             {
                 PersonId = person.Cpr,
