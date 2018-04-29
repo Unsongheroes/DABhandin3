@@ -189,7 +189,10 @@
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\PersonAdressesController.cs" />
     <Compile Include="Controllers\TelefonNummersController.cs" />
+    <Compile Include="DTO\AddressDTO.cs" />
+    <Compile Include="DTO\PersonAdressesDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PhoneNumberDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
