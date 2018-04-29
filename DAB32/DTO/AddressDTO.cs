@@ -47,6 +47,8 @@ namespace DAB32.DTO
         public string VejNavn { get; set; }
         public int Husnummer { get; set; }
 
+
+
         public List<PersonAdressesDTO> PersonAdresses { get; set; }
         
         public ByPostNummer ByPostNummer { get; set; }

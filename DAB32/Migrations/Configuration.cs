@@ -33,6 +33,7 @@ namespace DAB32.Migrations
             context.ByPostNummers.AddOrUpdate(b => b.Postnummer,
                 new ByPostNummer
                 {
+                    Postnummer = 10,
                     ByNavn = "Aarhus",
                     Land = "Denmark"
                 });
@@ -43,7 +44,7 @@ namespace DAB32.Migrations
                    Husnummer = 1,
                    AdresseId = 2,
                    VejNavn = "kildemosevej",
-
+                   PostNummer = 4
                  
 
                },
@@ -52,6 +53,7 @@ namespace DAB32.Migrations
                    AdresseId = 1,
                    Husnummer = 2,
                    VejNavn = "Strandvejen",
+                   PostNummer = 1
                }
                );
 

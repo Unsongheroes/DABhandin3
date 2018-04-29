@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201804291334254_remove_postnummerid.Designer.cs">
       <DependentUpon>201804291334254_remove_postnummerid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804291338426_added_Postnummer.cs" />
+    <Compile Include="Migrations\201804291338426_added_Postnummer.Designer.cs">
+      <DependentUpon>201804291338426_added_Postnummer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ByPost.cs" />
@@ -322,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804291334254_remove_postnummerid.resx">
       <DependentUpon>201804291334254_remove_postnummerid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804291338426_added_Postnummer.resx">
+      <DependentUpon>201804291338426_added_Postnummer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

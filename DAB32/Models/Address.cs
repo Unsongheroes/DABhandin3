@@ -17,7 +17,9 @@ namespace DAB32.Models
             public int Husnummer { get; set; }
 
             public List<PersonAdresse> PersonAdresses { get; set; }
-        
+            
+            public int PostNummer { get; set; }
+
             public ByPostNummer ByPostNummer { get; set; }
 
             public Adresse()
