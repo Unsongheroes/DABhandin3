@@ -60,24 +60,7 @@ namespace DAB33.DAL
 
         }
 
-        public static async Task<IEnumerable<T>> GetDocumentsAsync(Expression<Func<T, bool>> predicate)
-        {
-            IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
-                    UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId),
-                    new FeedOptions { MaxItemCount = -1 })
-                .Where(predicate)
-                .AsDocumentQuery();
-
-            List<T> results = new List<T>();
-            while (query.HasMoreResults)
-            {
-                results.AddRange(await query.ExecuteNextAsync<T>());
-            }
-
-            return results;
-        }
-
-        public static async Task<IEnumerable<T>> GetAllDocuments()
+        public static async Task<IEnumerable<T>> GetDocumentsAsync()
         {
             IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
                     UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId),
@@ -92,6 +75,12 @@ namespace DAB33.DAL
 
             return results;
         }
+
+        /*public static async Task<IEnumerable<Document>> GetAllDocuments()
+        {
+            
+            return await client.ReadDocumentCollectionAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId));
+        }*/
 
         public static async Task<Document> CreateDocumentAsync(T item)
         {

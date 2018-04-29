@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Transactions;
 using System.Web;
 using DAB33.Models;
@@ -12,7 +13,7 @@ namespace DAB33.DAL
     {
         private readonly List<T> _changed = new List<T>();
         private readonly List<T> _new = new List<T>();
-        private readonly List<T> _deleted = new List<T>();
+        private readonly List<int> _deleted = new List<int>();
 
         public void Add(T item)
         {
@@ -24,44 +25,40 @@ namespace DAB33.DAL
             _changed.Add(item);
         }
 
-        public void Delete(T item)
+        public void Delete(int id)
         {
-            _deleted.Add(item);
+            _deleted.Add(id);
         }
 
-        public void Commit()
+        public async Task Commit()
         {
-            Repository<Person>.CreateDatabase().Wait();
-            using (TransactionScope scope = new TransactionScope())
-            {
+           
                 foreach (T item in _changed)
                 {
-                    Repository<T>.UpdateDocumentAsync(item.Cpr, item).Wait();
+                     await Repository<T>.UpdateDocumentAsync(item.Cpr, item);
                 }
 
                 foreach (T item in _new)
                 {
-                    Repository<T>.CreateDocumentAsync(item).Wait();
+                    await Repository<T>.CreateDocumentAsync(item);
                 }
 
-                foreach (T item in _deleted)
+                foreach (int id in _deleted)
                 {
-                    Repository<T>.DeleteDocumentAsync(item.Cpr).Wait();
+                    await Repository<T>.DeleteDocumentAsync(id.ToString());
                 }
-            }
+                
+           
         }
 
-        public Person FindPersonById(string id)
+        public async Task<Person> FindPersonById(string id)
         {
-            var read = Repository<Person>.GetDocumentAsync(id).Result;
-            return read;
+            return await Repository<Person>.GetDocumentAsync(id); 
         }
 
-        public IEnumerable<Person> GetAllPersons()
+        public async Task<IEnumerable<Person>> GetAllPersons()
         {
-            
-            var read = Repository<Person>.GetAllDocuments().Result;
-            return read;
+            return await Repository<Person>.GetDocumentsAsync();
         }
 
     }
