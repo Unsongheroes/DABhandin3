@@ -20,7 +20,7 @@ namespace DAB32.DAL
 
         public void Dispose()
         {
-            var itemsToDelete = Persons.GetAll();
+            var itemsToDelete = Persons.GetAllPersons();
             Persons.RemoveRange(itemsToDelete);
 
             var itemsToDelete2 = _context.ByPostNummers;

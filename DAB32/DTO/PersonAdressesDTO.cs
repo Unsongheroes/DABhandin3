@@ -18,7 +18,7 @@ namespace DAB32.DTO
             MatchId = pr.MatchId;
             Type = pr.Type;
             PersonCpr = pr.PersonCpr;
-            AdresseId = AdresseId;
+            AdresseId = pr.AdresseId;
         }
 
         public PersonAdresse ToPersonAdresses()

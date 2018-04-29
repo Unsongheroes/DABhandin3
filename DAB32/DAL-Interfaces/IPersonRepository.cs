@@ -6,5 +6,6 @@ namespace DAB32
     public interface IPersonRepository : IRepository<Person>
     {
         IEnumerable<Person> GetPersonsByLastName(int amountofPersons);
+        IEnumerable<Person> GetAllPersons();
     }
 }

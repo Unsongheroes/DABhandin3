@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DAB32.DAL;
 using DAB32.DTO;
 using DAB32.Models;
 
@@ -16,19 +17,45 @@ namespace DAB32.Controllers
 {
     public class PeopleController : ApiController
     {
-        private DAB32Context db = new DAB32Context();
+
+        private static DAB32Context db = new DAB32Context();
+        private IUnitOfWork _uow = new UnitOfWork(db);
 
         // GET: api/People
         public IEnumerable<PersonDTO> GetPeople()
         {
-            List<PersonDTO> person = new List<PersonDTO>();
+            /*List<PersonDTO> person = new List<PersonDTO>();
 
             foreach (Person p in db.People)
             {
                 person.Add(new PersonDTO(p));
-            }
+            }*/
 
-            return person;
+            var persons = from p in _uow.Persons.GetAllPersons()
+                          select new PersonDTO()
+            {
+                PersonId = p.Cpr,
+                Email = p.Email,
+                FirstName = p.Fornavn,
+                LastName = p.EfterNavn,
+                MiddleName = p.MellemNavn,
+                PersonAddresses = p.PersonAdresses.Select(pa => new PersonAdressesDTO()
+                {
+                    AdresseId = pa.AdresseId,
+                    MatchId = pa.MatchId,
+                    PersonCpr = pa.PersonCpr,
+                    Type = pa.Type
+                }).ToList(),
+                PhoneNumbers =  p.TelefonBog.Select( tlf => new PhoneNumberDTO()
+                {
+                    Telefonnummer = tlf.Telefonnummer,
+                    TelefonSelskab = tlf.TelefonSelskab,
+                    TelefonnummerType = tlf.TelefonnummerType,
+                    PersonCpr = tlf.PersonCpr
+                }).ToList()
+            };
+
+            return persons;
         }
 
         // GET: api/People/5

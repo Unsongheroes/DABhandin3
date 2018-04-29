@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DAB32.DTO;
 using DAB32.Models;
 
 namespace DAB32.Controllers
@@ -17,9 +18,16 @@ namespace DAB32.Controllers
         private DAB32Context db = new DAB32Context();
 
         // GET: api/Adresses
-        public IQueryable<Adresse> GetAdresses()
+        public IEnumerable<AddressDTO> GetAdresses()
         {
-            return db.Adresses;
+            List<AddressDTO> address = new List<AddressDTO>();
+
+            foreach (Adresse a in db.Adresses)
+            {
+                address.Add(new AddressDTO(a));
+            }
+
+            return address;
         }
 
         // GET: api/Adresses/5
