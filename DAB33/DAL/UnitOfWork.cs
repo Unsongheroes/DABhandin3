@@ -15,6 +15,11 @@ namespace DAB33.DAL
         private readonly List<T> _new = new List<T>();
         private readonly List<int> _deleted = new List<int>();
 
+        public async Task InitializeDatabase()
+        {
+            await Repository<T>.CreateDatabase();
+        }
+
         public void Add(T item)
         {
             _new.Add(item);
