@@ -18,7 +18,6 @@ namespace DAB32.DTO
             Telefonnummer = nr.Telefonnummer;
             TelefonnummerType = nr.TelefonnummerType;
             TelefonSelskab = nr.TelefonSelskab;
-            PersonD = new PersonDTO(nr.Person);
             PersonCpr = nr.Person.Cpr;
         }
 
@@ -29,8 +28,7 @@ namespace DAB32.DTO
                 Telefonnummer = Telefonnummer,
                 TelefonnummerType = TelefonnummerType,
                 TelefonSelskab = TelefonSelskab,
-                Person = PersonD.ToPerson(),
-                PersonCpr = PersonD.PersonId
+                PersonCpr = PersonCpr
             };
         }
 
@@ -40,6 +38,6 @@ namespace DAB32.DTO
         public string TelefonSelskab { get; set; }
 
         public int PersonCpr { get; set; }
-        public PersonDTO PersonD { get; set; }
+
     }
 }

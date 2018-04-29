@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DAB32.Models;
 
 namespace DAB32.Migrations
@@ -61,8 +62,21 @@ namespace DAB32.Migrations
                     EfterNavn = "Andersen",
                     PersonType = "CEO",
                     MellemNavn = "georh",
-                    Email = "Per@Gmail.com"
+                    Email = "Per@Gmail.com",
+                    PAMatchId = new List<int>()
+                    {
+                        1,
+                        12
+                    },
+                    TelefonId = new List<int>()
+                    {
+                        1,
+                        12345678
+                    }
+                    
 
+                    
+                    
 
                 },
                 new Person
@@ -80,6 +94,7 @@ namespace DAB32.Migrations
             context.PersonAdresses.AddOrUpdate(pa => pa.Type,
                 new PersonAdresse
                 {
+                    MatchId = 12,
                     Type = "Hjem",
                     AdresseId = 1,
                     PersonCpr = 1,
@@ -87,6 +102,7 @@ namespace DAB32.Migrations
                 },
                 new PersonAdresse
                 {
+                    MatchId = 13,
                     Type = "Sommerhus",
                     AdresseId = 2,
                     PersonCpr = 1,
@@ -94,6 +110,7 @@ namespace DAB32.Migrations
                 },
                 new PersonAdresse
                 {
+                    MatchId = 14,
                     Type = "Arbejde",
                     AdresseId = 1,
                     PersonCpr = 1,

@@ -6,8 +6,10 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DAB32.DTO;
 using DAB32.Models;
 
 namespace DAB32.Controllers
@@ -17,22 +19,29 @@ namespace DAB32.Controllers
         private DAB32Context db = new DAB32Context();
 
         // GET: api/People
-        public IQueryable<Person> GetPeople()
+        public IEnumerable<PersonDTO> GetPeople()
         {
-            return db.People;
+            List<PersonDTO> person = new List<PersonDTO>();
+
+            foreach (Person p in db.People)
+            {
+                person.Add(new PersonDTO(p));
+            }
+
+            return person;
         }
 
         // GET: api/People/5
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult GetPerson(int id)
+        [ResponseType(typeof(PersonDTO))]
+        public async Task<IHttpActionResult> GetPerson(int id)
         {
-            Person person = db.People.Find(id);
+            Person person = await db.People.FindAsync(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            return Ok(person);
+            return Ok(new PersonDTO(person));
         }
 
         // PUT: api/People/5

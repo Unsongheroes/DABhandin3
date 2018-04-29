@@ -18,6 +18,8 @@ namespace DAB32.Models
             public string EfterNavn { get; set; }
             public string PersonType { get; set; }
             public string Email { get; set; }
+            public List<int> PAMatchId { get; set; }
+            public List<int> TelefonId { get; set; }
 
             public List<TelefonNummer> TelefonBog { get; set; }
 

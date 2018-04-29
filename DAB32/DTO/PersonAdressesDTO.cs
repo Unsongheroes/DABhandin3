@@ -18,9 +18,7 @@ namespace DAB32.DTO
             MatchId = pr.MatchId;
             Type = pr.Type;
             PersonCpr = pr.PersonCpr;
-            Person = new PersonDTO(pr.Person);
             AdresseId = AdresseId;
-            Adresse = new AddressDTO(pr.Adresse);
         }
 
         public PersonAdresse ToPersonAdresses()
@@ -28,10 +26,8 @@ namespace DAB32.DTO
             return new PersonAdresse()
             {
                 MatchId = MatchId,
-                Adresse = Adresse.ToAdresse(),
                 AdresseId = AdresseId,
                 Type = Type,
-                Person = Person.ToPerson(),
                 PersonCpr = PersonCpr
             };
         }
@@ -42,9 +38,6 @@ namespace DAB32.DTO
         public string Type { get; set; }
 
         public int PersonCpr { get; set; }
-        public PersonDTO Person { get; set; }
-
         public int AdresseId { get; set; }
-        public AddressDTO Adresse { get; set; }
     }
 }

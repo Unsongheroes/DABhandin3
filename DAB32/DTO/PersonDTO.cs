@@ -23,8 +23,6 @@ namespace DAB32.DTO
 
             Email = person.Email;
 
-            PrimaryAddress = new AddressDTO();
-
             PersonAddresses = new List<PersonAdressesDTO>();
 
             PhoneNumbers = new List<PhoneNumberDTO>();
@@ -54,8 +52,6 @@ namespace DAB32.DTO
         public string LastName { get; set; }
 
         public string Email { get; set; }
-
-        public AddressDTO PrimaryAddress { get; set; }
 
         public List<PersonAdressesDTO> PersonAddresses { get; set; }
 

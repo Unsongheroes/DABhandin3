@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201804251728279_Initial1.Designer.cs">
       <DependentUpon>201804251728279_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804290943550_Reference.cs" />
+    <Compile Include="Migrations\201804290943550_Reference.Designer.cs">
+      <DependentUpon>201804290943550_Reference.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ByPost.cs" />
@@ -301,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804251728279_Initial1.resx">
       <DependentUpon>201804251728279_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804290943550_Reference.resx">
+      <DependentUpon>201804290943550_Reference.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
