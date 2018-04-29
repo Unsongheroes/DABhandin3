@@ -189,6 +189,12 @@
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\PersonAdressesController.cs" />
     <Compile Include="Controllers\TelefonNummersController.cs" />
+    <Compile Include="DAL-Interfaces\IPersonRepository.cs" />
+    <Compile Include="DAL-Interfaces\IRepository.cs" />
+    <Compile Include="DAL-Interfaces\IUnitOfWork.cs" />
+    <Compile Include="DAL\PersonRepository.cs" />
+    <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\PersonAdressesDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />

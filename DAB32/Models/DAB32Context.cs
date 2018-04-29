@@ -20,6 +20,7 @@ namespace DAB32.Models
             this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
+
         public System.Data.Entity.DbSet<DAB32.Models.Adresse> Adresses { get; set; }
 
         public System.Data.Entity.DbSet<DAB32.Models.ByPostNummer> ByPostNummers { get; set; }
