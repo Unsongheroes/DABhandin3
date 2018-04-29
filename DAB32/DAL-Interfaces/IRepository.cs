@@ -13,6 +13,7 @@ namespace DAB32
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
         void Remove(TEntity entity);
+        TEntity Update(int id, TEntity obj);
         void RemoveRange(IEnumerable<TEntity> entities);
     }
 }

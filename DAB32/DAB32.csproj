@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201804290943550_Reference.Designer.cs">
       <DependentUpon>201804290943550_Reference.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804291155193_dabgit.cs" />
+    <Compile Include="Migrations\201804291155193_dabgit.Designer.cs">
+      <DependentUpon>201804291155193_dabgit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ByPost.cs" />
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804290943550_Reference.resx">
       <DependentUpon>201804290943550_Reference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804291155193_dabgit.resx">
+      <DependentUpon>201804291155193_dabgit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
