@@ -18,20 +18,14 @@ namespace DAB32.Controllers
     public class PeopleController : ApiController
     {
 
-        private static DAB32Context db = new DAB32Context();
-        private IUnitOfWork _uow = new UnitOfWork(db);
 
         // GET: api/People
+        //Do instantiate a new DbContext instance for each request.
         public IEnumerable<PersonDTO> GetPeople()
         {
-            /*List<PersonDTO> person = new List<PersonDTO>();
-
-            foreach (Person p in db.People)
-            {
-                person.Add(new PersonDTO(p));
-            }*/
-
-            var persons = from p in _uow.Persons.GetAllPersons()
+            DAB32Context db = new DAB32Context();
+            IUnitOfWork uow = new UnitOfWork(db);
+            var persons = from p in uow.Persons.GetAllPersons()
                           select new PersonDTO()
             {
                 PersonId = p.Cpr,
@@ -60,10 +54,37 @@ namespace DAB32.Controllers
 
         // GET: api/People/5
         [ResponseType(typeof(PersonDTO))]
-        public async Task<IHttpActionResult> GetPerson(int id)
+        public IHttpActionResult GetPerson(int id)
         {
-            Person person = await db.People.FindAsync(id);
-            if (person == null)
+            DAB32Context db = new DAB32Context();
+            IUnitOfWork uow = new UnitOfWork(db);
+
+            var person = uow.Persons.GetPerson(id);
+            PersonDTO personDto = new PersonDTO()
+            {
+                PersonId = person.Cpr,
+                FirstName = person.Fornavn,
+                MiddleName = person.MellemNavn,
+                LastName = person.EfterNavn,
+                Email = person.Email,
+                PersonAddresses = person.PersonAdresses.Select(pa => new PersonAdressesDTO()
+                {
+                    AdresseId = pa.AdresseId,
+                    MatchId = pa.MatchId,
+                    PersonCpr = pa.PersonCpr,
+                    Type = pa.Type
+                }).ToList(),
+                PhoneNumbers = person.TelefonBog.Select(tlf => new PhoneNumberDTO()
+                {
+                    Telefonnummer = tlf.Telefonnummer,
+                    TelefonSelskab = tlf.TelefonSelskab,
+                    TelefonnummerType = tlf.TelefonnummerType,
+                    PersonCpr = tlf.PersonCpr
+                }).ToList()
+
+            };
+                
+            if (personDto == null)
             {
                 return NotFound();
             }
@@ -75,6 +96,9 @@ namespace DAB32.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPerson(int id, Person person)
         {
+            DAB32Context db = new DAB32Context();
+            IUnitOfWork uow = new UnitOfWork(db);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -110,6 +134,9 @@ namespace DAB32.Controllers
         [ResponseType(typeof(Person))]
         public IHttpActionResult PostPerson(Person person)
         {
+            DAB32Context db = new DAB32Context();
+            IUnitOfWork uow = new UnitOfWork(db);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -125,6 +152,9 @@ namespace DAB32.Controllers
         [ResponseType(typeof(Person))]
         public IHttpActionResult DeletePerson(int id)
         {
+            DAB32Context db = new DAB32Context();
+            IUnitOfWork uow = new UnitOfWork(db);
+
             Person person = db.People.Find(id);
             if (person == null)
             {
@@ -139,6 +169,8 @@ namespace DAB32.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            DAB32Context db = new DAB32Context();
+            
             if (disposing)
             {
                 db.Dispose();
@@ -148,6 +180,8 @@ namespace DAB32.Controllers
 
         private bool PersonExists(int id)
         {
+            DAB32Context db = new DAB32Context();
+            
             return db.People.Count(e => e.Cpr == id) > 0;
         }
     }

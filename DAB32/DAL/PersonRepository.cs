@@ -24,6 +24,11 @@ namespace DAB32.DAL
             return query.ToList();
         }
 
+        public Person GetPerson(int id)
+        {
+            return PersonContext.People.Include(p => p.PersonAdresses).Include(p => p.TelefonBog).First(p => p.Cpr.Equals(id));
+        }
+
         public IEnumerable<Adresse> GetAllAdresses()
         {
             var query = PersonContext.Adresses.Include(pa => pa.PersonAdresses).Include(b => b.ByPostNummer);
