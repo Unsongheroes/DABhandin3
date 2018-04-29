@@ -18,7 +18,8 @@ namespace DAB32.Models
 
             public List<PersonAdresse> PersonAdresses { get; set; }
 
-            public ByPostNummer ByPostNummer { get; set; }
+        
+            public virtual ByPostNummer ByPostNummer { get; set; }
 
             public Adresse()
             {

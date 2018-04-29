@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DAB32.Migrations;
 using DAB32.Models;
 
 namespace DAB32.DTO
@@ -20,7 +21,7 @@ namespace DAB32.DTO
             AdresseId = address.AdresseId;
             VejNavn = address.VejNavn;
             Husnummer = address.Husnummer;
-
+          
             ByPostNummer = address.ByPostNummer;
 
             foreach (var item in address.PersonAdresses)
@@ -37,7 +38,8 @@ namespace DAB32.DTO
                 ByPostNummer = ByPostNummer,
                 Husnummer = Husnummer,
                 PersonAdresses = PersonAdresses.Select(pa => pa.ToPersonAdresses()).ToList(),
-                VejNavn = VejNavn
+                VejNavn = VejNavn,
+
             };
         }
 

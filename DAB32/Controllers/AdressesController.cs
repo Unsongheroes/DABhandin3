@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DAB32.DAL;
 using DAB32.DTO;
 using DAB32.Models;
 
@@ -20,12 +21,24 @@ namespace DAB32.Controllers
         // GET: api/Adresses
         public IEnumerable<AddressDTO> GetAdresses()
         {
-            List<AddressDTO> address = new List<AddressDTO>();
+            DAB32Context db = new DAB32Context();
+            IUnitOfWork _uow = new UnitOfWork(db);
 
-            foreach (Adresse a in db.Adresses)
-            {
-                address.Add(new AddressDTO(a));
-            }
+            var address = from a in _uow.Persons.GetAllAdresses()
+                select new AddressDTO()
+                {
+                    AdresseId = a.AdresseId,
+                    Husnummer = a.Husnummer,
+                    VejNavn = a.VejNavn,
+                    PersonAdresses = a.PersonAdresses.Select(pa => new PersonAdressesDTO()
+                    {
+                        AdresseId = pa.AdresseId,
+                        MatchId = pa.MatchId,
+                        PersonCpr = pa.PersonCpr,
+                        Type = pa.Type
+                    }).ToList(),
+                    
+                };
 
             return address;
         }
