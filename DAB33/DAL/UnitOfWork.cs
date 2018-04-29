@@ -32,23 +32,20 @@ namespace DAB33.DAL
 
         public async Task Commit()
         {
-           
-                foreach (T item in _changed)
-                {
-                     await Repository<T>.UpdateDocumentAsync(item.Cpr, item);
-                }
+            foreach (T item in _changed)
+            {
+                    await Repository<T>.UpdateDocumentAsync(item.Cpr, item);
+            }
 
-                foreach (T item in _new)
-                {
-                    await Repository<T>.CreateDocumentAsync(item);
-                }
+            foreach (T item in _new)
+            {
+                await Repository<T>.CreateDocumentAsync(item);
+            }
 
-                foreach (int id in _deleted)
-                {
-                    await Repository<T>.DeleteDocumentAsync(id.ToString());
-                }
-                
-           
+            foreach (int id in _deleted)
+            {
+                await Repository<T>.DeleteDocumentAsync(id.ToString());
+            }             
         }
 
         public async Task<Person> FindPersonById(string id)
