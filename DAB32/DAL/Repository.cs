@@ -20,7 +20,14 @@ namespace DAB32.DAL
         {
             return Context.Set<TEntity>().Find(id);
         }
-        
+
+        public TEntity Update(int id, TEntity obj)
+        {
+            Context.Set<TEntity>().Attach(obj);
+            Context.Entry(obj).State = EntityState.Modified;
+            
+            return Context.Set<TEntity>().Find(id);
+        }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {

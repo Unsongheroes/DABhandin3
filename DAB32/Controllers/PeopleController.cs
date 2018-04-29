@@ -109,11 +109,12 @@ namespace DAB32.Controllers
                 return BadRequest();
             }
 
-            db.Entry(person).State = EntityState.Modified;
+            var dbPerson = uow.Persons.Update(id, person);
+            
 
             try
             {
-                db.SaveChanges();
+                uow.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -131,8 +132,8 @@ namespace DAB32.Controllers
         }
 
         // POST: api/People
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult PostPerson(Person person)
+        [ResponseType(typeof(PersonDTO))]
+        public IHttpActionResult PostPerson(PersonDTO person)
         {
             DAB32Context db = new DAB32Context();
             IUnitOfWork uow = new UnitOfWork(db);
@@ -142,27 +143,28 @@ namespace DAB32.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.People.Add(person);
-            db.SaveChanges();
+            uow.Persons.Add(person.ToPerson());
+            uow.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = person.Cpr }, person);
+            return CreatedAtRoute("DefaultApi", new { id = person.PersonId }, person);
         }
 
         // DELETE: api/People/5
-        [ResponseType(typeof(Person))]
+        [ResponseType(typeof(PersonDTO))]
         public IHttpActionResult DeletePerson(int id)
         {
             DAB32Context db = new DAB32Context();
             IUnitOfWork uow = new UnitOfWork(db);
 
-            Person person = db.People.Find(id);
+            Person person = uow.Persons.Get(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            db.People.Remove(person);
-            db.SaveChanges();
+
+            uow.Persons.Remove(person);
+            uow.Complete();
 
             return Ok(person);
         }
